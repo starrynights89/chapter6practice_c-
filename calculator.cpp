@@ -10,7 +10,7 @@ int main()
     if(!cin) error("no first operand");
     for (char op; cin >> op; ) //read operator and right-hand operand repeatedly
     {
-        if (op! = 'x') cin >> rval;
+        if (op!='x') cin >> rval;
         if (!cin) error("no second operand");
         switch(op)
         {
@@ -19,7 +19,18 @@ int main()
                 break;
             case '-':
                 lval -= rval; //subtract: lval = lval - rval
-            case '*'
+                break; 
+            case '*':
+                lval *= rval; //multiply: lval = lval * rval
+                break;
+            case '/':
+                lval /= rval; //divide: lval = lval / rval
+                break;
+            default:          //not another operator: print result
+                cout << "Result: " << lval << '\n';
+                keep_window_open();
+                return 0;
         }
     }
+    error("bad expression"); 
 }
