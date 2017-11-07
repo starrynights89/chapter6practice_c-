@@ -1,5 +1,10 @@
 #include "std_lib_facilities.h"
 
+double expression()
+{
+    double left = expression();  //read and evaluate an Expression
+}
+
 int main()
 try
 {
