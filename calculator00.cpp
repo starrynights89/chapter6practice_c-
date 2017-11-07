@@ -1,17 +1,21 @@
 #include "std_lib_facilities.h"
 
 int main()
+try
 {
-    cout << "Please enter expression (we can handle +,-,*, and /)\n";
-    cout << "add an x to end expression (e.g., 1+2*3x): ";
-    double expression()
-    {
-        double left = term();         //read and evalute a Term
-        Token t = get_token();        //get the next token
-    }
-<<<<<<< HEAD:calculator.cpp
+    while (cin)
+        cout << expression() << '\n';
+    keep_window_open();
 }
-=======
-    error("bad expression"); 
+catch(exception& e)
+{
+    cerr << e.what() << '\n';
+    keep_window_open();
+    return 1;
 }
->>>>>>> 8411385ac6a42ad48031495e85aaf85e6ea20eb3:calculator00.cpp
+catch (...)
+{
+    cerr << "exception \n";
+    keep_window_open();
+    return 2; 
+}
