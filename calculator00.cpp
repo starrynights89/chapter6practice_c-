@@ -43,16 +43,19 @@ catch (...)
 
 double expression()
 {
-    double left = expression(); //read and evaluate an Expression
+    double left = term(); //read and evaluate a Term
     Token t = get_token();      //get the next token
-    switch(t.kind)              //see which kind of token it is
+    while (t.kind == '+' || t.kind == '-') //look for a + or a -
     {
-        case '+':
-            return left + expression(); //read and evaluate a Term then do an add
-        case '-':
-            return left - expression(); //read and evaluate a Term then do a subtraction
-        
-        default:
-            return left;          //return the value of the Expression
+        if (t.kind == '+')
+        {
+            left += term(); //evaluate Term and add
+        }
+        else
+        {
+            left -= term(); //evalutate Term and subtract
+        }
+        t = get_token();
     }
+    return left; //finally: no more + or -; return the answer
 }
