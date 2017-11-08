@@ -45,7 +45,6 @@ catch (...)
     return 2; 
 }
 
-/*
 double primary()
 {
 	Token t = get_token();
@@ -114,4 +113,3 @@ double expression()
 		}
 	}
 }
-*/
