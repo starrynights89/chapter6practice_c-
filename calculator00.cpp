@@ -48,9 +48,9 @@ double expression()
     switch(t.kind)              //see which kind of token it is
     {
         case '+':
-            return left + term(); //read and evaluate a Term then do an add
+            return left + expression(); //read and evaluate a Term then do an add
         case '-':
-            return left - term(); //read and evaluate a Term then do a subtraction
+            return left - expression(); //read and evaluate a Term then do a subtraction
         
         default:
             return left;          //return the value of the Expression
