@@ -41,21 +41,28 @@ catch (...)
     return 2; 
 }
 
-double expression()
+double term()
 {
-    double left = term(); //read and evaluate a Term
+    double left = primary(); //read and evaluate a Term
     Token t = get_token();      //get the next token
-    while (t.kind == '+' || t.kind == '-') //look for a + or a -
+    while (true)
     {
-        if (t.kind == '+')
+        switch(t.kind)
         {
-            left += term(); //evaluate Term and add
+            case '*':
+                left *= primary();
+                t = get_token();
+                break;
+            case '/':
+            {
+                double d = primary();
+                if (d==0) error("divide by zero");
+                left /= d;
+                t = get_token();
+                break;                
+            }
+            default:
+                return left;
         }
-        else
-        {
-            left -= term(); //evalutate Term and subtract
-        }
-        t = get_token();
     }
-    return left; //finally: no more + or -; return the answer
 }
