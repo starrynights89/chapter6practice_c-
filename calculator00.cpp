@@ -11,9 +11,19 @@ public:
 		:kind(ch), value(val) {}
 };
 
-Token get_token()
+Token get_token() //read a token from cin 
 {
-    return Token(); //function to read a token from cin
+	char ch;
+	cin >> ch; //note that >> skips whitespace (space, newline, tab, etc.)
+	
+	switch (ch)
+	{
+		case ';': //not yet for "print"
+		case 'q': //net yet for "quit"
+		case '(': case ')': case '+': case '-':  case '*': case '/':
+			return Token(ch); //let each charcter represent itself
+		
+	}
 } 
 
 vector<Token>tok; //we'll put the tokens here
