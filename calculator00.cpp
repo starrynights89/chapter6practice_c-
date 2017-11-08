@@ -14,21 +14,38 @@ Token get_token()
 
 vector<Token>tok; //we'll put the tokens here
 
+double expression(); //read and evalute a Expression
+
+double term(); //read and evaluate a Term
+
+double primary() //read and evaluate a Primary 
+{
+	Token t = get_token();
+	switch (t.kind)
+	{
+	case'(': //handle '('expression')'
+	{
+		double d = expression();
+		t = get_token();
+		if (t.kind != ')') error("')' expected");
+		{
+			return d;
+		}
+	}
+	case '8': //we use '8' to represent a number
+		return t.value; //return the number's value
+	default:
+		error("primary expected");
+	}
+}
+
 int main()
 try
 {
-    while (cin)
-    {
-        Token t = get_token();
-        tok.push_back(t);
-    }
-    for (int i = 0; i < tok.size(); i++)
-    {
-        if (tok[i].kind=='*') //we found a multiply!
-        {
-            double d = tok[i-1].value*tok[i+1].value;
-        }
-    }    
+	while (cin)
+	{
+		cout << expression() << '\n';
+	}
     keep_window_open();
     return 0;
 }
@@ -93,23 +110,3 @@ double term()
 	}
 }
 
-double primary()
-{
-	Token t = get_token();
-	switch (t.kind)
-	{
-	case'(': //handle '('expression')'
-	{
-		double d = expression();
-		t = get_token();
-		if (t.kind != ')') error("')' expected");
-		{
-			return d;
-		}
-	}
-	case '8': //we use '8' to represent a number
-		return t.value; //return the number's value
-	default:
-		error("primary expected");
-	}
-}
