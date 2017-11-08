@@ -7,7 +7,10 @@ public:
     double value; //for numbers: a value
 };
 
-Token get_token(); //function to read a token from cin
+Token get_token()
+{
+    return Token(); //function to read a token from cinS
+} 
 
 vector<Token>tok; //we'll put the tokens here
 
