@@ -16,15 +16,7 @@ try
 {
     while (cin)
     {
-        Token t = get_token();
-        tok.push_back(t);
-    }
-    for (int i = 0; i<tok.size(); i++)
-    {
-        if (tok[i].kind=='*')
-        {
-            double d = tok[i-1].value*tok[i+1].value;
-        }
+        cout << expression() << '\n';
     }    
     keep_window_open();
 }
@@ -90,25 +82,22 @@ double term()
 
 double expression()
 {
-    double left = term(); //read and evaluate a Term
-    Token t = get_token(); //get the next token
-    while (true)
-    {
-        switch (t.kind)
-        {
-            case '+':
-                left += term(); //evaluate a Term and add
-                t = get_token();
-                break;
-            case '-':
-                left -= term(); //evaluate a Term and subtract
-                t = get_token();
-                break;
-            default:
-                return left; //finally: no more + or -; return the answer
-        }
-    }
+	double left = term(); //read and evaluate a Term
+	Token t = get_token(); //get the next token
+	while (true)
+	{
+		switch (t.kind)
+		{
+		case '+':
+			left += term(); //evaluate a Term and add
+			t = get_token();
+			break;
+		case '-':
+			left -= term(); //evaluate a Term and subtract
+			t = get_token();
+			break;
+		default:
+			return left; //finally: no more + or -; return the answer
+		}
+	}
 }
-
-
-
