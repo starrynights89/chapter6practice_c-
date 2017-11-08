@@ -19,9 +19,18 @@ try
 {
     while (cin)
     {
-        cout << expression() << '\n';
+        Token t = get_token();
+        tok.push_back(t);
+    }
+    for (int i = 0; i < tok.size(); i++)
+    {
+        if (tok[i].kind=='*') //we found a multiply!
+        {
+            double d = tok[i-1].value*tok[i+1].value;
+        }
     }    
     keep_window_open();
+    return 0;
 }
 catch(exception& e)
 {
@@ -36,6 +45,7 @@ catch (...)
     return 2; 
 }
 
+/*
 double primary()
 {
 	Token t = get_token();
@@ -104,3 +114,4 @@ double expression()
 		}
 	}
 }
+*/
