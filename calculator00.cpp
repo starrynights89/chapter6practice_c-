@@ -7,11 +7,20 @@ public:
     double value; //for numbers: a value
 };
 
+Token get_token(); //function to read a token from cin
+
+vector<Token>tok; //we'll put the tokens here
+
 int main()
 try
 {
-    Token t1{'+'};
-    Token t2{'8',11.5};
+    while (cin)
+    {
+        Token t = get_token();
+        tok.push_back(t);
+        Token t1{'+'};
+        Token t2{'8',11.5};
+    }    
     keep_window_open();
 }
 catch(exception& e)
