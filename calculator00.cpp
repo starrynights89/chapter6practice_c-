@@ -9,7 +9,7 @@ public:
 
 Token get_token()
 {
-    return Token(); //function to read a token from cinS
+    return Token(); //function to read a token from cin
 } 
 
 vector<Token>tok; //we'll put the tokens here
