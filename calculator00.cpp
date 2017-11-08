@@ -20,10 +20,12 @@ private:
 
 Token_stream ts;
 
+double term(); 
+
 double expression()
 {     
     double left = term();        //evaluate an expression
-    Token t = ts.get();       //get the next token
+    Token t = ts.get();          //get the next token
     switch(t.kind)               //see which kind of token it is
     {
         case '+':
