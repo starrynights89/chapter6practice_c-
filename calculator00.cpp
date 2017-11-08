@@ -18,8 +18,13 @@ try
     {
         Token t = get_token();
         tok.push_back(t);
-        Token t1{'+'};
-        Token t2{'8',11.5};
+    }
+    for (int i = 0; i<tok.size(); i++)
+    {
+        if (tok[i].kind=='*')
+        {
+            double d = tok[i-1].value*tok[i+1].value;
+        }
     }    
     keep_window_open();
 }
