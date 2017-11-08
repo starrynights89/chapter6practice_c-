@@ -5,15 +5,25 @@ class Token
 public:
     char kind; //what kind of token
     double value; //for numbers: a value
-    Token get_token();
 };
 
-double term();
+class Token_stream
+{
+public:
+    Token_stream();
+    Token get();
+    void putback(Token t);
+private:
+    bool full;
+    Token buffer;
+};
+
+Token_stream ts;
 
 double expression()
 {     
     double left = term();        //evaluate an expression
-    Token t = get_token();       //get the next token
+    Token t = ts.get();       //get the next token
     switch(t.kind)               //see which kind of token it is
     {
         case '+':
