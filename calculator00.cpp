@@ -24,7 +24,7 @@ double term();
 
 double expression()
 {     
-    double left = term();        //evaluate an expression
+    double left = expression();        //evaluate an expression
     Token t = ts.get();          //get the next token
     switch(t.kind)               //see which kind of token it is
     {
