@@ -1,5 +1,12 @@
 #include "std_lib_facilities.h"
 
+class Token
+{
+public:
+    char kind;
+    double value; 
+};
+
 double expression()
 {
     double left = expression();  //read and evaluate an Expression
