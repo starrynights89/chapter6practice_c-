@@ -68,7 +68,7 @@ try
 {
 	while (cin)
 	{
-		cout << expression() << '\n';
+		cout << "=" << expression() << '\n';
 	}
     keep_window_open("~0");
 }
