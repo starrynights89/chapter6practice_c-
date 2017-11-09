@@ -102,7 +102,7 @@ double expression()
 			t = ts.get();
 			break;
 		default:
-			ts.putback(t); //put t back into the token stream 
+			ts.putback(t); //put t back into the token stream
 			return left; //finally: no more + or -; return the answer
 		}
 	}
