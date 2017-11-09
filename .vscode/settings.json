@@ -9,5 +9,6 @@
         "xlocmon": "cpp",
         "xlocnum": "cpp",
         "xloctime": "cpp"
-    }
+    },
+    "C_Cpp.intelliSenseEngine": "Default"
 }
