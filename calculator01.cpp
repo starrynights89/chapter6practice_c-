@@ -98,11 +98,10 @@ double primary() //read and evaluate a Primary
 int main()
 try
 {
-	double val = 0; 
 	while (cin)
 	{
+		double val = 0; 
 		Token t = ts.get();
-
 		if (t.kind == 'q') // 'q' for quit
 		{
 			break;
