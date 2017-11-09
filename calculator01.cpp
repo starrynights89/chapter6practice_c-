@@ -11,7 +11,18 @@ public:
 		:kind(ch), value(val) {}
 };
 
-Token get_token() //read a token from cin 
+class Token_stream
+{
+public:
+	Token_stream(); //make a Token_stream that reads from cin
+	Token get(); //get a Token (get() is defined elswhere)
+	void putback(Token t); //put a Token back 
+private:
+	bool full; // is there a Token in 
+	Token buffer; 
+};
+
+Token get() //read a token from cin 
 {
 	char ch;
 	cin >> ch; //note that >> skips whitespace (space, newline, tab, etc.)
@@ -34,9 +45,11 @@ Token get_token() //read a token from cin
 		default: 
 			error("Bad token"); 
 	}
-} 
+}
 
 vector<Token>tok; //we'll put the tokens here
+
+Token_stream ts; //provides get() and putback()
 
 double expression(); //read and evalute a Expression
 
@@ -44,13 +57,13 @@ double term(); //read and evaluate a Term
 
 double primary() //read and evaluate a Primary 
 {
-	Token t = get_token();
+	Token t = ts.get();
 	switch (t.kind)
 	{
 	case'(': //handle '('expression')'
 	{
 		double d = expression();
-		t = get_token();
+		t = ts.get();
 		if (t.kind != ')') error("')' expected");
 		{
 			return d;
