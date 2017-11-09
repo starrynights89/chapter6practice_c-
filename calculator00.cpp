@@ -22,7 +22,17 @@ Token get_token() //read a token from cin
 		case 'q': //net yet for "quit"
 		case '(': case ')': case '+': case '-':  case '*': case '/':
 			return Token(ch); //let each charcter represent itself
-		
+		case '.':
+		case '0': case '1': case '2': case '3': case '4':
+		case '5': case '6': case '7': case '8': case '9':
+		{
+			cin.pushback(ch); // put digit back into the input stream 
+			double val;
+			cin >> val: //read a floating-point number
+			return Token('8', val); //let '8' represent "a number"
+		}
+		default: 
+			error("Bad token"); 
 	}
 } 
 
@@ -60,19 +70,18 @@ try
 	{
 		cout << expression() << '\n';
 	}
-    keep_window_open();
-    return 0;
+    keep_window_open("~0");
 }
 catch(exception& e)
 {
     cerr << e.what() << '\n';
-    keep_window_open();
+    keep_window_open("~1");
     return 1;
 }
 catch (...)
 {
     cerr << "exception \n";
-    keep_window_open();
+    keep_window_open("~2");
     return 2; 
 }
 
@@ -123,4 +132,3 @@ double term()
 		}
 	}
 }
-
