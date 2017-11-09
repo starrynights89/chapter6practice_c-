@@ -36,7 +36,7 @@ void Token_stream::putback(Token t)
 	full = true; // buffer is now full 
 }
 
-Token get() //read a token from cin 
+Token Token_stream::get() //read a token from cin 
 {
 	if (full)
 	{
