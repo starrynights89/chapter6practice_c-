@@ -22,8 +22,27 @@ private:
 	Token buffer; 
 };
 
+//The constructor just sets full to indicate that the buffer is empty:
+Token_stream::Token_stream()
+:full(false), buffer(0) //no Token in buffer
+{
+}
+
+// The putback() member function puts its argument back into the Token_stream's buffer:
+void Token_stream::putback(Token t)
+{
+	if (full) error("putback() into the full buffer");
+	buffer = t; //copy t to buffer
+	full = true; // buffer is now full 
+}
+
 Token get() //read a token from cin 
 {
+	if (full)
+	{
+		full = false;
+		return buffer; 
+	}
 	char ch;
 	cin >> ch; //note that >> skips whitespace (space, newline, tab, etc.)
 	
@@ -81,20 +100,20 @@ try
 {
 	while (cin)
 	{
-		cout << "=" << expression() << '\n'; //version 1
+		Token t = ts.get();
 	}
-    keep_window_open("~0");
+    keep_window_open();
 }
 catch(exception& e)
 {
     cerr << e.what() << '\n';
-    keep_window_open("~1");
+    keep_window_open();
     return 1;
 }
 catch (...)
 {
     cerr << "exception \n";
-    keep_window_open("~2");
+    keep_window_open();
     return 2; 
 }
 
