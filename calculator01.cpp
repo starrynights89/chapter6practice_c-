@@ -66,8 +66,6 @@ Token Token_stream::get() //read a token from cin
 	}
 }
 
-vector<Token>tok; //we'll put the tokens here
-
 Token_stream ts; //provides get() and putback()
 
 double expression(); //read and evalute a Expression
