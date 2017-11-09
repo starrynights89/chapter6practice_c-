@@ -111,24 +111,25 @@ double expression()
 double term()
 {
 	double left = primary(); //read and evaluate a Term
-	Token t = get_token();      //get the next token
+	Token t = ts.get();      //get the next token
 	while (true)
 	{
 		switch (t.kind)
 		{
 		case '*':
 			left *= primary();
-			t = get_token();
+			t = ts.get();
 			break;
 		case '/':
 		{
 			double d = primary();
 			if (d == 0) error("divide by zero");
 			left /= d;
-			t = get_token();
+			t = ts.get();
 			break;
 		}
 		default:
+			ts.putback(t); //put t back into the Token stream
 			return left;
 		}
 	}
