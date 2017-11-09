@@ -88,7 +88,7 @@ catch (...)
 double expression()
 {
 	double left = term(); //read and evaluate a Term
-	Token t = ts.get(); //get the next token
+	Token t = ts.get(); //get the next Token from the Token stream
 	while (true)
 	{
 		switch (t.kind)
@@ -111,7 +111,7 @@ double expression()
 double term()
 {
 	double left = primary(); //read and evaluate a Term
-	Token t = ts.get();      //get the next token
+	Token t = ts.get();      //get the next Token from the Token stream
 	while (true)
 	{
 		switch (t.kind)
