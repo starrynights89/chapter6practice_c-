@@ -26,9 +26,9 @@ Token get_token() //read a token from cin
 		case '0': case '1': case '2': case '3': case '4':
 		case '5': case '6': case '7': case '8': case '9':
 		{
-			cin.pushback(ch); // put digit back into the input stream 
+			cin.putback(ch); // put digit back into the input stream 
 			double val;
-			cin >> val: //read a floating-point number
+			cin >> val; //read a floating-point number
 			return Token('8', val); //let '8' represent "a number"
 		}
 		default: 
