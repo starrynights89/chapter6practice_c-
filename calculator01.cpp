@@ -98,6 +98,7 @@ double primary() //read and evaluate a Primary
 int main()
 try
 {
+	double val = 0; 
 	while (cin)
 	{
 		Token t = ts.get();
