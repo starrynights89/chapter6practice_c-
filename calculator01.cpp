@@ -88,20 +88,21 @@ catch (...)
 double expression()
 {
 	double left = term(); //read and evaluate a Term
-	Token t = get_token(); //get the next token
+	Token t = ts.get(); //get the next token
 	while (true)
 	{
 		switch (t.kind)
 		{
 		case '+':
 			left += term(); //evaluate a Term and add
-			t = get_token();
+			t = ts.get();
 			break;
 		case '-':
 			left -= term(); //evaluate a Term and subtract
-			t = get_token();
+			t = ts.get();
 			break;
 		default:
+			ts.putback(t); //put t back into the token stream 
 			return left; //finally: no more + or -; return the answer
 		}
 	}
