@@ -48,8 +48,8 @@ Token Token_stream::get() //read a token from cin
 	
 	switch (ch)
 	{
-		case ';': //not yet for "print"
-		case 'q': //net yet for "quit"
+		case ';': case '=': //for "print"
+		case 'q': case 'x': //for "quit"
 		case '(': case ')': case '+': case '-':  case '*': case '/':
 			return Token(ch); //let each charcter represent itself
 		case '.':
