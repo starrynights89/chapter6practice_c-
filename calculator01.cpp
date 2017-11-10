@@ -72,7 +72,8 @@ double expression(); //read and evalute a Expression
 
 double term(); //read and evaluate a Term
 
-double primary() //read and evaluate a Primary 
+//deal with numbers and parentheses
+double primary()  
 {
 	Token t = ts.get();
 	switch (t.kind)
@@ -96,23 +97,27 @@ double primary() //read and evaluate a Primary
 int main()
 try
 {
+	
+	cout << "Welcome to our simple calculator.\n";
+	cout << "Please enter expressions using floating-point numbers.\n";
+	cout << "Operators available are '+', '-', '*', '/', and '%'.\n";
+	cout << "Type ';' or '=' to get a value and 'q' or 'x' to quit.\n";
+	
+	double val = 0;
 	while (cin)
-	{
-		double val = 0; 
+	{ 
 		Token t = ts.get();
-		if (t.kind == 'q') // 'q' for quit
-		{
+		if (t.kind == 'q' || t.kind == 'x') // 'q' for quit
 			break;
-		}
-		if (t.kind == ';') // ';' for "print now"
+		if (t.kind == ';' || t.kind == '=') // ';' for "print now"
 		{
 			cout << "=" << val << '\n';
 		}
 		else
 		{
 			ts.putback(t);
+			val = expression();
 		}
-		val = expression();
 	}
     keep_window_open();
 }
@@ -129,6 +134,7 @@ catch (...)
     return 2; 
 }
 
+// deal with + and -
 double expression()
 {
 	double left = term(); //read and evaluate a Term
@@ -152,6 +158,7 @@ double expression()
 	}
 }
 
+// deal with *, /, %
 double term()
 {
 	double left = primary(); //read and evaluate a Term
