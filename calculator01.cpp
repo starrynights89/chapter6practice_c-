@@ -68,9 +68,7 @@ Token Token_stream::get() //read a token from cin
 
 Token_stream ts; //provides get() and putback()
 
-double expression(); //read and evalute a Expression
-
-double term(); //read and evaluate a Term
+double expression(); //declaration so that primary() can call expression()
 
 //deal with numbers and parentheses
 double primary()  
@@ -91,6 +89,58 @@ double primary()
 		return t.value; //return the number's value
 	default:
 		error("primary expected");
+	}
+}
+
+// deal with *, /, %
+double term()
+{
+	double left = primary(); //read and evaluate a Term
+	Token t = ts.get();      //get the next Token from the Token stream
+	while (true)
+	{
+		switch (t.kind)
+		{
+		case '*':
+			left *= primary();
+			t = ts.get();
+			break;
+		case '/':
+		{
+			double d = primary();
+			if (d == 0) error("divide by zero");
+			left /= d;
+			t = ts.get();
+			break;
+		}
+		default:
+			ts.putback(t); //put t back into the Token stream
+			return left;
+		}
+	}
+}
+
+// deal with + and -
+double expression()
+{
+	double left = term(); //read and evaluate a Term
+	Token t = ts.get(); //get the next Token from the Token stream
+	while (true)
+	{
+		switch (t.kind)
+		{
+		case '+':
+			left += term(); //evaluate a Term and add
+			t = ts.get();
+			break;
+		case '-':
+			left -= term(); //evaluate a Term and subtract
+			t = ts.get();
+			break;
+		default:
+			ts.putback(t); //put t back into the token stream
+			return left; //finally: no more + or -; return the answer
+		}
 	}
 }
 
@@ -132,56 +182,4 @@ catch (...)
     cerr << "exception \n";
     keep_window_open();
     return 2; 
-}
-
-// deal with + and -
-double expression()
-{
-	double left = term(); //read and evaluate a Term
-	Token t = ts.get(); //get the next Token from the Token stream
-	while (true)
-	{
-		switch (t.kind)
-		{
-		case '+':
-			left += term(); //evaluate a Term and add
-			t = ts.get();
-			break;
-		case '-':
-			left -= term(); //evaluate a Term and subtract
-			t = ts.get();
-			break;
-		default:
-			ts.putback(t); //put t back into the token stream
-			return left; //finally: no more + or -; return the answer
-		}
-	}
-}
-
-// deal with *, /, %
-double term()
-{
-	double left = primary(); //read and evaluate a Term
-	Token t = ts.get();      //get the next Token from the Token stream
-	while (true)
-	{
-		switch (t.kind)
-		{
-		case '*':
-			left *= primary();
-			t = ts.get();
-			break;
-		case '/':
-		{
-			double d = primary();
-			if (d == 0) error("divide by zero");
-			left /= d;
-			t = ts.get();
-			break;
-		}
-		default:
-			ts.putback(t); //put t back into the Token stream
-			return left;
-		}
-	}
 }
